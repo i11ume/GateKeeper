@@ -1,0 +1,70 @@
+{{!< default}}
+
+<header>
+
+    <div class="blurheader">
+
+        <nav class="navbar">
+
+            <div class="container">
+                <a class="logo-name" href="{{@blog.url}}">
+                  
+                <img src="{{@blog.logo}}" class="logo" />
+
+                  <div class="right-of-logo">
+                    <h1>{{@blog.title}}</h1>
+                    <span class="tagline">{{@blog.description}}</span>
+                  </div>
+
+                </a>
+
+                <div class="social">
+                    <a class="social-icon" href="http://twitter.com/share?text={{@blog.title}}&amp;url={{@blog.url}}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+
+                    <a class="social-icon" href="https://www.facebook.com/sharer/sharer.php?u={{@blog.url}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+
+                    <a class="social-icon" href="https://plus.google.com/share?url={{@blog.url}}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">                    
+                        <i class="fa fa-google-plus-square"></i>
+                    </a>
+
+                    <a class="social-icon" href="/rss">
+                        <i class="fa fa-rss-square"></i>
+                    </a>
+
+                </div>
+
+                <div class="main-menu">
+                    {{> main-menu-links}}
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+     
+     <div class="container search">
+
+            <div class="search-area">
+
+            <form id="search-form">
+                <input type="text" class="search-input" id="search-field" autocomplete="off" />
+            </form>
+
+            <a class="search-icon" href="#" id="search-button">
+                <i class="fa fa-search"></i>
+                <i class="fa fa-times-circle"></i>
+            </a>
+
+            <div id="results">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

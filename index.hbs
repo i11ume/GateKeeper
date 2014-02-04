@@ -1,0 +1,65 @@
+{{!< default}}
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! Each post will be output using this markup }}
+{{#foreach posts}}
+
+    <article class="col-lg-12 blog-post {{post_class}} {{#if @first}}first{{/if}} {{#if @even}}even{{/if}}">
+
+        {{! Unfortunately with the skrollr library we can't have strics separation of content and style. The styles below are used in the parallax animation of the main page }}
+        <div class="background-image" 
+
+            data-top-center="
+                -webkit-transform               : translate3d(0px, 0px, 0px);
+                -webkit-backface-visibility     : hidden;
+                -webkit-perspective             : 1000;  
+                -moz-transform                  : translate3d(0px, 0px, 0px);
+                -moz-backface-visibility        : hidden;
+                -moz-perspective                : 1000;
+                transform                       : translate3d(0px, 0px, 0px);
+                backface-visibility             : hidden;
+                perspective                     : 1000;" 
+
+            data-bottom-center="
+                -webkit-transform               : translate3d(0px, -300px, 0px);
+                -moz-transform                  : translate3d(0px, -300px, 0px);
+                transform                       : translate3d(0px, -300px, 0px);
+            ">
+            
+            {{! Here we grab just one word from the post. This one word will include any html tags that came before it, which is where our featured image resides. That way there's no need to load the whole post to parse it. }}
+            <div class="one-word">{{content words=1}}</div>
+        </div>
+
+        <div class="darkened-bg"></div>
+        <div class="container blog-post-text">
+
+            <a class="title" href="{{url}}"><h1>{{{title}}}</h1></a>
+            <h5>
+                <i class="fa fa-clock-o"></i> Published {{date published_at timeago="true"}} by {{author.name}}
+
+                <div class="tags">{{{tags separator=", " prefix="<i class='fa fa-tags'></i>&nbsp;"}}}</div>
+            </h5>
+            <p> 
+                {{excerpt characters="350"}} &hellip;   
+            </p>
+            <p> <a class="btn btn-default" href="{{url}}">Read more &nbsp;<i class="fa fa-angle-right"></i></a>    </p>
+
+        </div>
+
+    </article>
+
+{{/foreach}}
+
+{{! We include the footer here as it changes depending on which page it's in }}
+<footer class="container">
+
+    {{!! After all the posts, we have the previous/next pagination links }}
+    {{pagination}}
+
+    <span class="footer-text">
+        Copyright {{{@blog.title}}} © {{date format="YYYY"}} • All rights reserved.<br />
+        Theme designed by <a href="http://themeforest.net/user/i11ume">i11ume</a><br />
+        Proudly published with Ghost</span>
+
+</footer>

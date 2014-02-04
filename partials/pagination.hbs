@@ -1,0 +1,19 @@
+<nav class="pagination" role="navigation">
+    {{#if prev}}<a href="{{pageUrl prev}}">{{/if}}
+        
+        <span class="newer-posts btn btn-default pagination-nav {{#unless prev}}disabled{{/unless}}">
+           	<i class="fa fa-angle-left"></i>
+			Newer Posts
+		</span>
+
+    {{#if prev}}</a>{{/if}}
+    <span class="page-number">Page {{page}} of {{pages}}</span>
+    {{#if next}}<a href="{{pageUrl next}}">{{/if}}
+
+        <span class="older-posts btn btn-default pagination-nav {{#unless next}}disabled{{/unless}}">
+        	Older Posts 
+        	<i class="fa fa-angle-right"></i>
+        </span>
+
+    {{#if next}}</a>{{/if}}
+</nav>

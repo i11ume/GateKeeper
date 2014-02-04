@@ -1,0 +1,93 @@
+{{!< default}}
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+ 
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+    
+    <article class="col-lg-12 blog-post single {{post_class}}">
+
+        <div class="background-image" 
+
+            data-top-center="
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                -webkit-backface-visibility: hidden;
+                -webkit-perspective: 1000;  
+                -moz-transform: translate3d(0px, 0px, 0px);
+                -moz-backface-visibility: hidden;
+                -moz-perspective: 1000;" 
+
+            data-bottom-center="
+                -webkit-transform: translate3d(0px, -300px, 0px);
+                -moz-transform: translate3d(0px, -300px, 0px);">
+            <div class="one-word">{{content words=1}}</div>
+        </div>
+
+        <div class="darkened-bg"></div>
+        <div class="container blog-post-text">
+
+            <h1>{{{title}}}</h1>
+            <h5><i class="fa fa-clock-o"></i> Published {{date published_at timeago="true"}} by {{author.name}}</h5>
+
+            <div class="social single">
+                <a class="social-icon" href="http://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+                        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">       
+                    <i class="fa fa-twitter-square"></i>
+                </a>
+
+                <a class="social-icon" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+
+                <a class="social-icon" href="https://plus.google.com/share?url={{url absolute="true"}}"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="fa fa-google-plus-square"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </article>
+
+    <div class="article-body">
+
+        <div class="container">
+            {{{content}}}
+        </div>
+
+    </div>
+
+    {{! We include the footer here as it changes depending on which page it's in }}
+
+    <footer class="container single">
+
+        <div class="author">
+
+            <div class="image" style="background-image:url({{author.image}})"></div>
+            <span class="text">
+                <span class="name">{{author.name}}</span>
+                <span class="bio">{{author.bio}}</span>
+            </span>
+            
+        </div>
+       
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = '{{! Please put in your Disqus shortname here }}'; // required: replace example with your forum shortname
+            var disqus_identifier = '{{post.id}}'; // make sure to use the post.id as an identifier, otherwise disqus will use the pages url per default, which might be problematic...
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the comments.</noscript>
+
+        <span class="footer-text">Copyright {{{@blog.title}}} © {{date format="YYYY"}} • All rights reserved.<br />
+        Proudly published with Ghost</span>
+
+    </footer>
+
+{{/post}}

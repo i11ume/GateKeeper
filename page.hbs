@@ -1,0 +1,50 @@
+{{!< default}}
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! This is a page template. It acts in the very similarly to a post page. }}
+
+{{#post}}
+
+    <article class="col-lg-12 blog-post single {{post_class}} even">
+
+        <div class="background-image" 
+
+            data-top-center="
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                -webkit-backface-visibility: hidden;
+                -webkit-perspective: 1000;  
+                -moz-transform: translate3d(0px, 0px, 0px);
+                -moz-backface-visibility: hidden;
+                -moz-perspective: 1000;" 
+
+            data-bottom-center="
+                -webkit-transform: translate3d(0px, -300px, 0px);
+                -moz-transform: translate3d(0px, -300px, 0px);">
+            <div class="one-word">{{content words=1}}</div>
+        </div>
+
+        <div class="darkened-bg"></div>
+        <div class="container blog-post-text">
+
+            <h1>{{{title}}}</h1>
+
+        </div>
+
+    </article>
+
+    <div class="article-body">
+
+        <div class="container">
+            {{{content}}}
+        </div>
+    </div>
+
+    <footer class="container single">
+
+        <span class="footer-text">Copyright {{{@blog.title}}} © {{date format="YYYY"}} • All rights reserved.<br />
+        Proudly published with Ghost</span>
+
+    </footer>
+
+{{/post}}
